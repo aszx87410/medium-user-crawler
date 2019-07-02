@@ -31,7 +31,7 @@ class DB {
 
   getUserIds(limit) {
     return new Promise((resolve, reject) => {
-      this.conn.query('SELECT userId from Queues limit ' + limit, (err, results) => {
+      this.conn.query('SELECT userId from Queues order by id asc limit ' + limit, (err, results) => {
         if (err) {
           return reject(err)
         }
