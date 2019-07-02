@@ -10,8 +10,8 @@ module.exports = {
     const regexJP = /[\u3040-\u309F]|[\u30A0-\u30FF]/g; 
     const jp = text.match(regexJP)
 
-    // 大於三個日文才算數，避免有人喜歡加一些日文字母？
-    if (jp && jp.length >= 3) {
+    // more than 2 japanese char
+    if (jp && jp.length >= 2) {
       return true
     }
     return false

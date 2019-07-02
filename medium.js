@@ -15,11 +15,14 @@ async function getMediumResponse(url) {
 }
 
 function isMandarinUser(name, bio, posts) {
+
+  // if bio or name is japanese, must be japanese
+  if (utils.isJapanese(name) || utils.isJapanese(bio)) {
+    return false
+  }
+
    // this user has no activity on medium, decide by name and bio
   if (!posts) {
-    if (utils.isJapanese(name) || utils.isJapanese(bio)) {
-      return false
-    }
     return utils.isChinese(name) || utils.isChinese(bio)
   }
 
