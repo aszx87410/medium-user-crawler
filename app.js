@@ -56,7 +56,7 @@ async function main() {
           to = nextTo
           count += followers.length
           utils.log(userInfo.userId, 'fetching', count, 'followers')
-          await queue.push(followers)
+          await queue.push(followers.filter(uid => !userIdMap[uid]))
           if (followers.length === 0 || !to) {
             break;
           }
