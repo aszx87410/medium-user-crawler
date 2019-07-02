@@ -9,7 +9,7 @@ function format(time) {
 function transform(info) {
   return [
     info.userId, info.username, info.name, info.bio, info.followerCount,
-    format(info.mediumMemberAt), format(info.createdAt), info.isWriterProgramEnrolled
+    format(info.mediumMemberAt), format(info.createdAt), info.isWriterProgramEnrolled, null
   ]
 }
 
@@ -54,12 +54,11 @@ class DB {
   insertUserData(info) {
     if (!info) return
     const data = Array.isArray(info) ? info.map(transform) : [transform(info)]
-
     this.conn.query(`
       INSERT INTO Users
       (
         userId, username, name, bio, follower,
-        mediumMemberAt, createdAt, isWriterProgramEnrolled
+        mediumMemberAt, createdAt, isWriterProgramEnrolled, fr
       ) VALUES ?`, [data], (err) => {
         if (err) {
           // console.log(err)
