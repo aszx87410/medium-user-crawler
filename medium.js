@@ -26,7 +26,7 @@ function isMandarinUser(name, bio, posts) {
   const contents = _.values(posts).map(item => item.title + _.get(item, 'content.subtitle'))
   return Boolean(
     contents.find(item => {
-      return utils.isChinese(item)
+      return utils.isChinese(item) && !utils.isJapanese(item)
     })
   )
 }
