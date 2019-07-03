@@ -2,6 +2,8 @@
 
 ## 簡介
 
+[Medium 中文寫作者追蹤人數排名與不專業數據分析](https://medium.com/@hulitw/medium-analysis-40752b9efa03)
+
 誤打誤撞找到了一個 API，用 GET 就能夠取得資料，十分方便：https://medium.com/_/api/users/f1fb3e40dc37/profile/stream
 
 如果想看 userId 是什麼，在 medium profile 頁面後面加 `?format=json` 就可以了，例如說：https://medium.com/@hulitw?format=json
