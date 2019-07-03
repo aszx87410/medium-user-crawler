@@ -76,13 +76,15 @@ CREATE TABLE `Queues` (
 
 把 `config.example.js` 改名成 `config.js` 並填入相關參數：
 
+
 | 名稱                 | 說明                                                     |
-| db                 | 資料庫相關參數                                                      |
 |--------------------|---------------------------------------------------------------------|
+| db                 | 資料庫相關參數                                                      |
 | batchLimit         | 在用 getUsers.js 時一次要抓幾筆使用者資料                           |
 | randomDelay        | 在用 getUsers.js 時每一次要隨機暫停多久毫秒，避免太頻繁發送 request |
 | errorRateTolerance | 在用 getUsers.js 時如果 response 的錯誤率低於這個值就忽略錯誤       |
 | delayWhenError     | 出錯時要暫停的毫秒數                                                |
+
 
 接著 `npm run start` 就可以開始跑了。`npm run getUsers` 則可以跑只處理使用者資料的程式。
 
