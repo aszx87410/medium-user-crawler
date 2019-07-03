@@ -92,6 +92,8 @@ CREATE TABLE `Queues` (
 
 你也可以直接用我爬好的數據，我有幫追蹤人數 1000 人以上使用者的標明地區，其中 `EMPTY` 代表沒有文章，`EN` 代表用英文寫作。
 
+網址：https://raw.githubusercontent.com/aszx87410/medium-user-crawler/master/users.csv
 
+7.4 MB，大約 74k 筆使用者資料。
 
 
