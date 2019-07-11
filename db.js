@@ -26,7 +26,7 @@ class DB {
 
   getTopUsers() {
     return new Promise((resolve, reject) => {
-      this.conn.query('SELECT userId from Users where follower >= 1000', (err, results) => {
+      this.conn.query('SELECT userId from Users where follower >= 1000 order by follower desc', (err, results) => {
         if (err) {
           return reject(err)
         }

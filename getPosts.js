@@ -7,7 +7,7 @@ const utils = require('./utils')
 async function main() {
   const db = new DB(config.db)
   const userIds = await db.getTopUsers()
-  //const userIds = ['11162699a102']
+
   let cursor = 0
   while(cursor < userIds.length) {
     const userId = userIds[cursor++]
@@ -30,7 +30,7 @@ async function main() {
         const { nextTo, posts } = data
         to = nextTo
         count += posts.length
-        utils.log(userId, 'fetching', count, 'posts')
+        utils.log(cursor, userId, 'fetching', count, 'posts')
         
         console.log('to', to)
         const newPosts = (posts.map(post => ({
