@@ -76,5 +76,23 @@ module.exports = {
       isWriterProgramEnrolled: _.get(json, 'payload.user.isWriterProgramEnrolled'),
       createdAt: _.get(json, 'payload.user.createdAt'),
     }
+  },
+
+  getPosts: async (uid, to) => {
+    let url = `https://medium.com/_/api/users/${uid}/profile/stream?source=overview&limit=25`
+    if (to) {
+      url += '&to=' + to
+    }
+    const json = await getMediumResponse(url)
+    if (!json) {
+      return null
+    }
+    const postIds = _.keys(json.payload.references.Post) || []
+    const posts = postIds.map(id => json.payload.references.Post[id])
+    const nextTo = _.get(json, 'payload.paging.next.to')
+    return {
+      posts,
+      nextTo
+    }
   }
 }

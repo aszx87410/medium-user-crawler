@@ -13,9 +13,26 @@ function transform(info) {
   ]
 }
 
+function transformPost(info) {
+  return [
+    info.postId, info.title, info.userId, info.detectedLanguage, format(info.firstPublishedAt), info.clap
+  ]
+}
+
 class DB {
   constructor(config) {
     this.conn = mysql.createPool(config)
+  }
+
+  getTopUsers() {
+    return new Promise((resolve, reject) => {
+      this.conn.query('SELECT userId from Users where follower >= 1000', (err, results) => {
+        if (err) {
+          return reject(err)
+        }
+       return resolve(results.map(item => item.userId))
+      });
+    })
   }
 
   getExistingUserIds() {
@@ -62,6 +79,21 @@ class DB {
       ) VALUES ?`, [data], (err) => {
         if (err) {
           // console.log(err)
+        }
+      }
+    )
+  }
+
+  insertPostData(info) {
+    if (!info) return
+    const data = Array.isArray(info) ? info.map(transformPost) : [transformPost(info)]
+    this.conn.query(`
+      INSERT IGNORE INTO Posts
+      (
+        postId, title, userId, detectedLanguage, firstPublishedAt, clap
+      ) VALUES ?`, [data], (err) => {
+        if (err) {
+          //console.log(err)
         }
       }
     )
